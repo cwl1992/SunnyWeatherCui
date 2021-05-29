@@ -5,6 +5,7 @@
     android:background="?android:windowBackground">
 
     <ImageView
+        android:id="@+id/bgImageView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
@@ -18,6 +19,7 @@
         android:background="@color/color0">
 
         <EditText
+            android:id="@+id/searchPlaceEdit"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginStart="@dimen/dp_10"
@@ -34,55 +36,17 @@
     </FrameLayout>
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/actionBarLayout"
         android:layout_marginTop="@dimen/dp_10"
         android:visibility="gone" />
 
-    <androidx.core.widget.NestedScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@id/actionBarLayout">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
-
-
-            <include layout="@layout/item_place" />
-
-            <include layout="@layout/item_place" />
-
-            <include layout="@layout/item_place" />
-
-            <include layout="@layout/item_place" />
-
-            <include layout="@layout/item_place" />
-
-            <include layout="@layout/item_place" />
-
-            <include layout="@layout/item_place" />
-
-            <include layout="@layout/item_place" />
-
-            <include layout="@layout/item_place" />
-
-            <include layout="@layout/item_place" />
-
-            <include layout="@layout/item_place" />
-
-            <include layout="@layout/item_place" />
-
-            <include layout="@layout/item_place" />
-
-            <include layout="@layout/item_place" />
-
-        </LinearLayout>
-
-
-    </androidx.core.widget.NestedScrollView>
+    <!--
+    <include layout="@layout/item_place" />
+    -->
 
 
 </RelativeLayout>
