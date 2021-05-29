@@ -1,0 +1,70 @@
+{
+    "api_status": "active",
+    "api_version": "v2.5",
+    "lang": "zh_CN",
+    "location": [
+        25.1552,
+        121.6544
+    ],
+    "result": {
+        "primary": 0,
+        "realtime": {
+            "air_quality": {
+                "aqi": {
+                    "chn": 9,
+                    "usa": 0
+                },
+                "co": 0,
+                "description": {
+                    "chn": "优",
+                    "usa": ""
+                },
+                "no2": 0,
+                "o3": 0,
+                "pm10": 0,
+                "pm25": 7,
+                "so2": 0
+            },
+            "apparent_temperature": 32.9,
+            "cloudrate": 0.9,
+            "dswrf": 62.8,
+            "humidity": 0.52,
+            "life_index": {
+                "comfort": {
+                    "desc": "闷热",
+                    "index": 0
+                },
+                "ultraviolet": {
+                    "desc": "很弱",
+                    "index": 2.0
+                }
+            },
+            "precipitation": {
+                "local": {
+                    "datasource": "radar",
+                    "intensity": 0.2499,
+                    "status": "ok"
+                },
+                "nearest": {
+                    "distance": 0.0,
+                    "intensity": 4.0,
+                    "status": "ok"
+                }
+            },
+            "pressure": 98925.55,
+            "skycon": "LIGHT_RAIN",
+            "status": "ok",
+            "temperature": 32.16,
+            "visibility": 12.3,
+            "wind": {
+                "direction": 0.0,
+                "speed": 15.48
+            }
+        }
+    },
+    "server_time": 1622279080,
+    "status": "ok",
+    "timezone": "Asia/Taipei",
+    "tzshift": 28800,
+    "unit": "metric"
+}

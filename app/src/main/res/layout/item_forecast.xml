@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/dp_10">
+
+
+    <TextView
+        android:id="@+id/dataInfo"
+        android:layout_width="@dimen/dp_0"
+        android:layout_height="wrap_content"
+        android:layout_weight="3"
+        android:gravity="center"
+        android:text="2020-11-11"
+        android:textColor="@color/tv_111"
+        android:textSize="@dimen/sp_14" />
+
+    <ImageView
+        android:id="@+id/imageInfo"
+        android:layout_width="@dimen/dp_20"
+        android:layout_height="@dimen/dp_20"
+        android:scaleType="centerCrop"
+        android:src="@drawable/bg_wind" />
+
+
+    <TextView
+        android:id="@+id/skyInfo"
+        android:layout_width="@dimen/dp_0"
+        android:layout_height="wrap_content"
+        android:layout_weight="3"
+        android:gravity="center"
+        android:text="晴天"
+        android:textColor="@color/tv_111"
+        android:textSize="@dimen/sp_14" />
+
+    <TextView
+        android:id="@+id/tempInfo"
+        android:layout_width="@dimen/dp_0"
+        android:layout_height="wrap_content"
+        android:layout_weight="3"
+        android:gravity="center|right"
+        android:paddingEnd="@dimen/dp_10"
+        android:text="18-25℃"
+        android:textColor="@color/tv_111"
+        android:textSize="@dimen/sp_14" />
+
+
+</LinearLayout>

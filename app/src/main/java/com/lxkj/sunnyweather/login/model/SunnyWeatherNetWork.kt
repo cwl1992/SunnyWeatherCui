@@ -3,6 +3,7 @@ package com.lxkj.sunnyweather.login.model
 import android.util.Log
 import com.google.gson.Gson
 import com.lxkj.sunnyweather.login.network.PlaceService
+import com.lxkj.sunnyweather.login.network.WeatherService
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -45,6 +46,25 @@ object SunnyWeatherNetWork {
             })
         }
     }
+
+
+    //TODO--------------------------------
+
+    private val weatherService = ServiceCreator.create(WeatherService::class.java)
+
+    //未来天气
+//    suspend fun getDailyWeather(lng: String, lat: String) = weatherService.getDailyWeather(lng, lat).await()
+//
+//    //实时天气
+//    suspend fun getRealtimeWeather(lng: String, lat: String) = weatherService.getRealtimeWeather(lng, lat)
+
+    //TODO--------------------------------
+
+
+    //suspend fun getDailyWeather(lng: String, lat: String) = weatherService.getDailyWeather(lng, lat).await()
+
+    suspend fun getDailyWeather(lng: String, lat: String) = weatherService.getDailyWeather(lng, lat).await()
+    suspend fun getRealtimeWeather(lng: String, lat: String) = weatherService.getRealtimeWeather(lng, lat).await()
 
 
 }
