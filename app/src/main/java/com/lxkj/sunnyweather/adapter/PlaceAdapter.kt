@@ -8,13 +8,14 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import com.lxkj.sunnyweather.R
 import com.lxkj.sunnyweather.login.model.Place
+import kotlinx.android.synthetic.main.item_place.view.*
 
 class PlaceAdapter(private val fr: Fragment, private val placeList: List<Place>) : RecyclerView.Adapter<PlaceAdapter.ViewHolder>() {
 
 
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val placeName: TextView = view.findViewById(R.id.placeName)
-        val placeAddress: TextView = view.findViewById(R.id.placeAddress)
+        val placeName: TextView = view.placeName
+        val placeAddress: TextView = view.placeAddress
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
