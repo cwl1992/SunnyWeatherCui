@@ -10,9 +10,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.lxkj.sunnyweather.R
 import com.lxkj.sunnyweather.common.WeatherActivity
 import com.lxkj.sunnyweather.login.model.Place
+import com.lxkj.sunnyweather.ui.place.PlaceFragment
 import kotlinx.android.synthetic.main.item_place.view.*
 
-class PlaceAdapter(private val fr: Fragment, private val placeList: List<Place>) : RecyclerView.Adapter<PlaceAdapter.ViewHolder>() {
+class PlaceAdapter(private val fr: PlaceFragment, private val placeList: List<Place>) : RecyclerView.Adapter<PlaceAdapter.ViewHolder>() {
 
 
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -41,6 +42,9 @@ class PlaceAdapter(private val fr: Fragment, private val placeList: List<Place>)
                 putExtra("lat", placeList[position].location.lat)
                 putExtra("lng", placeList[position].location.lng)
             }
+            fr.viewModel.savePlace(placeList[position])//保存地点对象
+
+
             fr.startActivity(intent)
             fr.activity?.finish()
 

@@ -1,5 +1,6 @@
 package com.lxkj.sunnyweather.ui.place
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -15,6 +16,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.lxkj.sunnyweather.R
 import com.lxkj.sunnyweather.adapter.PlaceAdapter
+import com.lxkj.sunnyweather.common.WeatherActivity
 import kotlinx.android.synthetic.main.fragment_place.*
 
 class PlaceFragment : Fragment() {
@@ -28,6 +30,30 @@ class PlaceFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+
+        val isPlace1 = viewModel.isPlace()
+        if (isPlace1) {
+            //有保存的地点位置
+            val place = viewModel.getPlace()
+
+            val intent = Intent(activity, WeatherActivity::class.java).apply {
+                putExtra("placeName", place.name)
+                putExtra("placeAddress", place.formatted_address)
+                putExtra("lat", place.location.lat)
+                putExtra("lng", place.location.lng)
+            }
+            activity?.startActivity(intent)
+            activity?.finish()
+            return
+        } else {
+            //没有保存地点位置
+            noPlace()
+        }
+
+
+    }
+
+    private fun noPlace() {
         val linearLayoutManager = LinearLayoutManager(activity)
         recyclerView.layoutManager = linearLayoutManager
         val adapter = PlaceAdapter(this, viewModel.placeList)
@@ -63,7 +89,6 @@ class PlaceFragment : Fragment() {
 
 
         })
-
     }
 
 

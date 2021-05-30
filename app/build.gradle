@@ -50,6 +50,10 @@ dependencies {
 
 
 
+    //解决 GsonFormat 的问题需要下载  在AS设置里面找到Plugins— Lombok 并加入以下2个依赖
+    compile 'javax.annotation:javax.annotation-api:1.2'
+    compile 'org.projectlombok:lombok:1.16.6'
+
 
     implementation 'androidx.recyclerview:recyclerview:1.0.0'
     implementation "androidx.lifecycle:lifecycle-extensions:2.1.0"

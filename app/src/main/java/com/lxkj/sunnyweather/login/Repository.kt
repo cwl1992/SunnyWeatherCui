@@ -1,6 +1,8 @@
 package com.lxkj.sunnyweather.login
 
 import androidx.lifecycle.liveData
+import com.lxkj.sunnyweather.login.dao.PlaceDao
+import com.lxkj.sunnyweather.login.model.Place
 import com.lxkj.sunnyweather.login.model.SunnyWeatherNetWork
 import com.lxkj.sunnyweather.login.model.Weather
 import kotlinx.coroutines.Dispatchers
@@ -61,6 +63,17 @@ object Repository {
             }
             emit(result)
         }
+
+
+    //-------保存和获取地点信息---------------
+    fun savePlace(place: Place) = PlaceDao.savePlace(place)
+
+    fun getSavePlace() = PlaceDao.getPlace()
+
+    fun isSavePlace() = PlaceDao.isPlaceKey()
+
+
+    //-------保存和获取地点信息---------------
 
 
 }
