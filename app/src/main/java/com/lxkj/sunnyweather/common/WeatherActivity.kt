@@ -1,14 +1,18 @@
 package com.lxkj.sunnyweather.common
 
+import android.content.Context
 import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
+import android.view.inputmethod.InputMethodManager
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.GravityCompat
+import androidx.drawerlayout.widget.DrawerLayout
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.lxkj.sunnyweather.R
@@ -40,6 +44,17 @@ class WeatherActivity : AppCompatActivity() {
 
         setContentView(R.layout.weather_activity)
 
+        if (viewModel.locationLng.isEmpty()) {
+            viewModel.locationLng = intent.getStringExtra("lng") ?: ""
+        }
+        if (viewModel.locationLat.isEmpty()) {
+            viewModel.locationLat = intent.getStringExtra("lat") ?: ""
+        }
+        if (viewModel.placeName.isEmpty()) {
+            viewModel.placeName = intent.getStringExtra("placeName") ?: ""
+        }
+
+
         val placeNameStr = intent.getStringExtra("placeName");
         val placeAddress = intent.getStringExtra("placeAddress");
         val lat = intent.getStringExtra("lat");
@@ -66,18 +81,41 @@ class WeatherActivity : AppCompatActivity() {
 
         swipeRefreshLayout.setColorSchemeResources(R.color.purple_500, R.color.tv_red, R.color.yellow)//设置刷新的颜色
 
-        refreshWeatherMethod(lat.toString(), lng.toString())//默认的请求接口
+        refreshWeatherMethod(viewModel.locationLat, viewModel.locationLng, viewModel.placeName)//默认的请求接口
 
         swipeRefreshLayout.setOnRefreshListener {
-            refreshWeatherMethod(lat.toString(), lng.toString())//下拉刷新的监听
+            refreshWeatherMethod(viewModel.locationLat, viewModel.locationLng, viewModel.placeName)//下拉刷新的监听
         }
 
         Log.d("TAG", "onCreate: " + viewModel.locationLat + "-------" + viewModel.locationLng)
 
 
+        //从左侧开启侧滑菜单
+        backImage.setOnClickListener {
+            drawerLayout.openDrawer(GravityCompat.START)
+        }
+
+        drawerLayout.addDrawerListener(object : DrawerLayout.DrawerListener {
+            override fun onDrawerSlide(drawerView: View, slideOffset: Float) {}
+
+            override fun onDrawerOpened(drawerView: View) {}
+
+            override fun onDrawerClosed(drawerView: View) {
+                val manager = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+                manager.hideSoftInputFromWindow(drawerView.windowToken, InputMethodManager.HIDE_NOT_ALWAYS)
+            }
+
+            override fun onDrawerStateChanged(newState: Int) {}
+
+        })
+
+
     }
 
-    private fun refreshWeatherMethod(lat: String, lng: String) {
+    fun refreshWeatherMethod(lat: String, lng: String, name: String) {
+
+        Log.d("输出的信息----请求的接口是", "refreshWeatherMethod: $lat----------$lng-------------$name")
+
         viewModel.refreshWeather(lat, lng)
         swipeRefreshLayout.isRefreshing = true //显示刷新按钮
 
@@ -87,7 +125,8 @@ class WeatherActivity : AppCompatActivity() {
     private fun showWeatherInfo(placeNameStr: String?, weather: Weather) {
 
         //--------头部信息-------
-        placeName.text = placeNameStr//城市名字
+        //placeName.text = placeNameStr//城市名字
+        placeName.text = viewModel.placeName
         val realtime = weather.realtime
         tv0.text = "${realtime.temperature}℃"//实时温度
         tv1.text = getSky(realtime.skycon).info

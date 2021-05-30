@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.lxkj.sunnyweather.R
 import com.lxkj.sunnyweather.adapter.PlaceAdapter
+import com.lxkj.sunnyweather.common.MainActivity
 import com.lxkj.sunnyweather.common.WeatherActivity
 import kotlinx.android.synthetic.main.fragment_place.*
 
@@ -32,10 +33,9 @@ class PlaceFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
 
         val isPlace1 = viewModel.isPlace()
-        if (isPlace1) {
+        if (activity is MainActivity && isPlace1) {
             //有保存的地点位置
             val place = viewModel.getPlace()
-
             val intent = Intent(activity, WeatherActivity::class.java).apply {
                 putExtra("placeName", place.name)
                 putExtra("placeAddress", place.formatted_address)
