@@ -28,6 +28,7 @@ import kotlinx.android.synthetic.main.weather_activity.*
 import java.text.SimpleDateFormat
 import java.util.*
 
+//天气详情
 class WeatherActivity : AppCompatActivity() {
 
 
