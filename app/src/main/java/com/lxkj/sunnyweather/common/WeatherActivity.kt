@@ -60,7 +60,7 @@ class WeatherActivity : AppCompatActivity() {
                 Toast.makeText(this, "查询天气信息失败", Toast.LENGTH_LONG).show()
             }
 
-            swipeRefreshLayout.isRefreshing = false //隐藏刷新按钮
+            swipeRefreshLayout.isRefreshing = false //隐藏刷新按钮的操作
 
         })
 
