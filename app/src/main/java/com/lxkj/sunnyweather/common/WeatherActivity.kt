@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.lxkj.sunnyweather.R
+import com.lxkj.sunnyweather.login.Repository.refreshWeather
 import com.lxkj.sunnyweather.login.model.Weather
 import com.lxkj.sunnyweather.login.model.getSky
 import com.lxkj.sunnyweather.ui.weather.WeatherViewModel
@@ -19,6 +20,7 @@ import kotlinx.android.synthetic.main.forecast.*
 import kotlinx.android.synthetic.main.item_forecast.view.*
 import kotlinx.android.synthetic.main.life_index.*
 import kotlinx.android.synthetic.main.now.*
+import kotlinx.android.synthetic.main.weather_activity.*
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -57,15 +59,30 @@ class WeatherActivity : AppCompatActivity() {
                 //没有数据
                 Toast.makeText(this, "查询天气信息失败", Toast.LENGTH_LONG).show()
             }
+
+            swipeRefreshLayout.isRefreshing = false //隐藏刷新按钮
+
         })
+
+        swipeRefreshLayout.setColorSchemeResources(R.color.purple_500, R.color.tv_red, R.color.yellow)//设置刷新的颜色
+
+        refreshWeatherMethod(lat.toString(), lng.toString())//默认的请求接口
+
+        swipeRefreshLayout.setOnRefreshListener {
+            refreshWeatherMethod(lat.toString(), lng.toString())//下拉刷新的监听
+        }
 
         Log.d("TAG", "onCreate: " + viewModel.locationLat + "-------" + viewModel.locationLng)
 
-        //viewModel.refreshWeather(viewModel.locationLat, viewModel.locationLng)
-        viewModel.refreshWeather(lat.toString(), lng.toString())
-
 
     }
+
+    private fun refreshWeatherMethod(lat: String, lng: String) {
+        viewModel.refreshWeather(lat, lng)
+        swipeRefreshLayout.isRefreshing = true //显示刷新按钮
+
+    }
+
 
     private fun showWeatherInfo(placeNameStr: String?, weather: Weather) {
 
