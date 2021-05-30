@@ -20,6 +20,7 @@ import com.lxkj.sunnyweather.common.MainActivity
 import com.lxkj.sunnyweather.common.WeatherActivity
 import kotlinx.android.synthetic.main.fragment_place.*
 
+//首次选择城市和侧滑切换城市
 class PlaceFragment : Fragment() {
 
     val viewModel by lazy { ViewModelProviders.of(this).get(PlaceViewModel::class.java) }
